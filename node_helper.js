@@ -78,7 +78,7 @@ module.exports = NodeHelper.create({
     this.ringApi = new mainRingApi.RingApi({
       refreshToken: process.env.RING_2FA_REFRESH_TOKEN,
       debug: true,
-      cameraDingsPollingSeconds: 2
+      cameraDingsPollingSeconds: 2,
     });
 
     this.ringApi.onRefreshTokenUpdated.subscribe(
@@ -154,7 +154,7 @@ module.exports = NodeHelper.create({
       });
       this.toLog(`Actively listening for doorbell presses`);
       //Check config value if node app should stream motion
-      if(this.config.ringStreamMotion){
+      if (this.config.ringStreamMotion) {
         camera.onMotionDetected.subscribe(async (newMotion) => {
           //NewMotion is a true false value indicating whether the motion is new based on the dings made in the last 65 seconds
           // This prevents the stream from being triggered on startup because it would not be an active motion event.
@@ -164,10 +164,7 @@ module.exports = NodeHelper.create({
         });
         this.toLog(`Actively listening for Motion events`);
       }
-      
     });
-
-    
   },
 
   startSession: async function (camera, type) {
@@ -176,14 +173,17 @@ module.exports = NodeHelper.create({
     }
 
     this.sessionRunning = true;
-    if(type === "ring"){
-      this.toLog(`${camera.name} had its doorbell rung! Preparing video stream.`);
-    }else if(type === "motion"){
+    if (type === "ring") {
+      this.toLog(
+        `${camera.name} had its doorbell rung! Preparing video stream.`
+      );
+    } else if (type === "motion") {
       this.toLog(`${camera.name} has sensed motion Preparing video stream.`);
-    }else{
-      this.toLog(`${camera.name} been summoned by something other than a ring or motion. (spooky) Preparing video stream.`); 
+    } else {
+      this.toLog(
+        `${camera.name} been summoned by something other than a ring or motion. (spooky) Preparing video stream.`
+      );
     }
-    
 
     await this.cleanUpVideoStreamDirectory();
     this.watchForStreamStarted();
@@ -205,8 +205,8 @@ module.exports = NodeHelper.create({
         "6",
         "-hls_flags",
         "delete_segments",
-        pathApi.join(this.videoOutputDirectory, this.audioPlaylistFile)
-      ]
+        pathApi.join(this.videoOutputDirectory, this.audioPlaylistFile),
+      ],
     });
     this.sipSession.onCallEnded.subscribe(() => {
       this.toLog(`${camera.name} video stream has ended`);
@@ -242,7 +242,7 @@ module.exports = NodeHelper.create({
 
     this.watcher = fileWatcher.watch(this.videoOutputDirectory, {
       ignored: /(^|[\/\\])\../,
-      persistent: true
+      persistent: true,
     });
 
     this.watcher.on("add", (filePath) => {
@@ -253,5 +253,5 @@ module.exports = NodeHelper.create({
         this.sendSocketNotification("VIDEO_STREAM_AVAILABLE", null);
       }
     });
-  }
+  },
 });

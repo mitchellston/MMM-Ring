@@ -4,11 +4,11 @@
   "description": "Ring.com doorbell ding video stream for MagicMirror",
   "main": "MMM-Ring.js",
   "dependencies": {
-    "chokidar": "^3.5.1",
-    "dotenv": "^8.6.0",
-    "hls.js": "^0.13.0",
-    "ring-client-api": "^9.21.0",
-    "rxjs": "^6.6.7"
+    "chokidar": "^3.6",
+    "dotenv": "^16.4",
+    "hls.js": "^1.5",
+    "ring-client-api": "^12.1",
+    "rxjs": "^7.8"
   },
   "repository": {
     "type": "git",
