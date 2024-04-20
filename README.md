@@ -8,10 +8,8 @@ Whenever someone rings your doorbell by pressing the button on your ring device,
 
 **Caveats:**
 
-- Must have an active Ring subscription
 - Only displays the earliest stream sent to it with no way to view multiple streams.
 - There is a slight unavoidable delay (couple seconds) with the videos.
-- In your ring app, all of these events will show as answered rings or answered motion. This may get fixed in the future.
 - You will not be able to interact, talk with, or hear the person on the other end through MM.
 - The RingAPI being used is unofficial which means there could be potential issues if Ring ever decides to make changes.
 - Though it will work most of the time, there are slight chances a video may not get picked up/streamed properly. This is due partly because of using an unoffical API and sometimes hls (video component used for streaming) picks up the stream too early or faults for other reasons.
